@@ -15,10 +15,20 @@ public static final DeferredItem<Item> Tin = ITEMS.register("tin",
     public static final DeferredItem<Item> Brass = ITEMS.register("brass",
    () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> RawTin = ITEMS.register("rawtin",
+            () -> new Item(new Item.Properties()));
+
+
+
+
+
+
+
+
 
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
 
-    }
+      }
 }

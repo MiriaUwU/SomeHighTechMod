@@ -77,6 +77,7 @@ public class AnotherTechMod {
       if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
           event.accept(Tin);
           event.accept(Brass);
+          event.accept(RawTin);
       }
 
     }
