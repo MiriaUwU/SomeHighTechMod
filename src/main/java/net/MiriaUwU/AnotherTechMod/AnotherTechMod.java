@@ -1,5 +1,8 @@
 package net.MiriaUwU.AnotherTechMod;
 
+import net.MiriaUwU.AnotherTechMod.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.MaceItem;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -18,6 +21,9 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+
+import static net.MiriaUwU.AnotherTechMod.item.ModItems.*;
+import static net.MiriaUwU.AnotherTechMod.item.ModItems.register;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(AnotherTechMod.MOD_ID)
@@ -39,6 +45,12 @@ public class AnotherTechMod {
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
+
+
+        ModItems.register(modEventBus);
+
+
+
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -62,7 +74,10 @@ public class AnotherTechMod {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+      if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+          event.accept(Tin);
+          event.accept(Brass);
+      }
 
     }
 
