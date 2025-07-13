@@ -1,5 +1,13 @@
 {
  "item.yetanothertechmod.tin": "Tin",
  "item.yetanothertechmod.brass": "Brass",
- "item.yetanothertechmod.rawtin": "Raw Tin"
+ "item.yetanothertechmod.rawtin": "Raw Tin",
+
+
+
+
+
+ "block.yetanothertechmod.tin_block": "Tin Block",
+ "block.yetanothertechmod.tin_ore": "Tin Ore",
+ "block.yetanothertechmod.brass_block": "Brass Block"
 }

@@ -1,5 +1,6 @@
 package net.MiriaUwU.AnotherTechMod;
 
+import net.MiriaUwU.AnotherTechMod.block.ModBlocks;
 import net.MiriaUwU.AnotherTechMod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.MaceItem;
@@ -48,7 +49,7 @@ public class AnotherTechMod {
 
 
         ModItems.register(modEventBus);
-
+        ModBlocks.register(modEventBus);
 
 
 
@@ -79,6 +80,14 @@ public class AnotherTechMod {
           event.accept(Brass);
           event.accept(RawTin);
       }
+
+      if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+          event.accept(ModBlocks.Tin_Block);
+          event.accept(ModBlocks.Tin_ore);
+          event.accept(ModBlocks.Brass_block);
+
+      }
+
 
     }
 
