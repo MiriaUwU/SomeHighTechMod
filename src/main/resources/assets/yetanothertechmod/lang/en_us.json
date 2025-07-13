@@ -9,5 +9,8 @@
 
  "block.yetanothertechmod.tin_block": "Tin Block",
  "block.yetanothertechmod.tin_ore": "Tin Ore",
- "block.yetanothertechmod.brass_block": "Brass Block"
+ "block.yetanothertechmod.brass_block": "Brass Block",
+
+ "creativetab.yetanothertechmod.ingots_items" : "Ingots",
+ "creativetab.yetanothertechmod.blocks": "Blocks"
 }
