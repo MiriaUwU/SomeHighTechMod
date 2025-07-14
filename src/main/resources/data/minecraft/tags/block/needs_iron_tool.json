@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "yetanothertechmod:tin_block",
+    "yetanothertechmod:tin_ore",
+    "yetanothertechmod:brass_block"
+  ]
+}
