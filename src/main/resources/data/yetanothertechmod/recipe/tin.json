@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "yetanothertechmod:tin_block"
+    }
+  ],
+  "result": {
+    "id": "yetanothertechmod:tin",
+    "count": 9
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BBB",
+    "BBB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "yetanothertechmod:tin"
+    }
+  },
+  "result": {
+    "id": "yetanothertechmod:tin_block",
+    "count": 1
+  }
+}

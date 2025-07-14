@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": {
+    "item": "yetanothertechmod:tin_ore"
+  },
+  "result": {
+    "id": "yetanothertechmod:tin"
+  },
+  "experience": 1,
+  "cookingtime": 50
+}

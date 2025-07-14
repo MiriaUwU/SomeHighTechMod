@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "yetanothertechmod:tin_ore"
+  },
+  "result": {
+    "id": "yetanothertechmod:tin"
+  },
+  "experience": 3,
+  "cookingtime": 100
+}
