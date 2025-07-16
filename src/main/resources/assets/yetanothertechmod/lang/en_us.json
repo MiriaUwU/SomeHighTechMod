@@ -2,6 +2,7 @@
  "item.yetanothertechmod.tin": "Tin",
  "item.yetanothertechmod.brass": "Brass",
  "item.yetanothertechmod.rawtin": "Raw Tin",
+ "item.yetanothertechmod.oil_bucket": "Oil Bucket",
 
 
 
@@ -12,5 +13,6 @@
  "block.yetanothertechmod.brass_block": "Brass Block",
 
  "creativetab.yetanothertechmod.ingots_items" : "Ingots",
- "creativetab.yetanothertechmod.blocks": "Blocks"
+ "creativetab.yetanothertechmod.blocks": "Blocks",
+ "creativetab.yetanothertechmod.fluids": "Fluids"
 }

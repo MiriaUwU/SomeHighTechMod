@@ -2,12 +2,14 @@ package net.MiriaUwU.AnotherTechMod.item;
 
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.block.ModBlocks;
+import net.MiriaUwU.AnotherTechMod.fluid.OilFluids;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -38,6 +40,16 @@ public class ModCreativeModeTabs {
                       output.accept(ModBlocks.Tin_Block);
                       output.accept(ModBlocks.Tin_ore);
                   }) .build());
+
+
+
+    public static final Supplier<CreativeModeTab> FLUID_TAB = CREATIVE_MODE_TAB.register("fluid_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(OilFluids.OIL_BUCKET.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(AnotherTechMod.MOD_ID, "blocks_tab"))
+                    .title(Component.translatable("creativetab.yetanothertechmod.fluids"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept((ItemLike) OilFluids.OIL_BUCKET);
+                    }) .build());
 
 
 

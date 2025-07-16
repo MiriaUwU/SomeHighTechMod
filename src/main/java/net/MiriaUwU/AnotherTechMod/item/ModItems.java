@@ -1,7 +1,6 @@
 package net.MiriaUwU.AnotherTechMod.item;
 
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
-import net.MiriaUwU.AnotherTechMod.fluid.ModFluids;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;

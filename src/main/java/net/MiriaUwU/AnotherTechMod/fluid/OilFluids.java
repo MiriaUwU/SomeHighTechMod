@@ -22,7 +22,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
-public class ModFluids {
+public class OilFluids {
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, AnotherTechMod.MOD_ID);
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(BuiltInRegistries.FLUID, AnotherTechMod.MOD_ID);
     public static final DeferredRegister<Item> BUCKETS = DeferredRegister.createItems(AnotherTechMod.MOD_ID);
@@ -42,7 +42,7 @@ public class ModFluids {
         FLUIDS.register(modbus);
         BUCKETS.register(modbus);
         SOURCEBLOCKS.register(modbus);
-        modbus.addListener(ModFluids::clientExt);
+        modbus.addListener(OilFluids::clientExt);
     }
 
     private static final IClientFluidTypeExtensions liquidExt = new IClientFluidTypeExtensions() {
@@ -55,6 +55,7 @@ public class ModFluids {
         public ResourceLocation getFlowingTexture() {
             return ResourceLocation.fromNamespaceAndPath("yetanothertechmod", "block/oil_flowing");
         }
+
     };
 
     private static void clientExt(RegisterClientExtensionsEvent event) {

@@ -1,13 +1,15 @@
 package net.MiriaUwU.AnotherTechMod;
 
 import net.MiriaUwU.AnotherTechMod.block.ModBlocks;
-import net.MiriaUwU.AnotherTechMod.fluid.ModFluids;
+import net.MiriaUwU.AnotherTechMod.client.OilFogHandler;
+import net.MiriaUwU.AnotherTechMod.fluid.OilFluids;
 import net.MiriaUwU.AnotherTechMod.item.ModCreativeModeTabs;
 import net.MiriaUwU.AnotherTechMod.item.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.MaceItem;
+import net.minecraft.world.level.ItemLike;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -56,7 +58,8 @@ public class AnotherTechMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
-        ModFluids.register(modEventBus);
+        OilFluids.register(modEventBus);
+        OilFogHandler.register(modEventBus);
 
 
         // Register the item to a creative tab
@@ -84,6 +87,12 @@ public class AnotherTechMod {
           event.accept(ModBlocks.Brass_block);
 
       }
+
+      if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+        event.accept((ItemLike) OilFluids.OIL_BUCKET);
+
+      }
+
 
 
     }
