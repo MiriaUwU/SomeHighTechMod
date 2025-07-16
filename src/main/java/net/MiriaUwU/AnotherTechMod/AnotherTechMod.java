@@ -1,8 +1,11 @@
 package net.MiriaUwU.AnotherTechMod;
 
 import net.MiriaUwU.AnotherTechMod.block.ModBlocks;
+import net.MiriaUwU.AnotherTechMod.fluid.ModFluids;
 import net.MiriaUwU.AnotherTechMod.item.ModCreativeModeTabs;
 import net.MiriaUwU.AnotherTechMod.item.ModItems;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.MaceItem;
 import org.slf4j.Logger;
@@ -53,7 +56,7 @@ public class AnotherTechMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
-
+        ModFluids.register(modEventBus);
 
 
         // Register the item to a creative tab
@@ -96,6 +99,9 @@ public class AnotherTechMod {
     static class ClientModEvents {
         @SubscribeEvent
         static void onClientSetup(FMLClientSetupEvent event) {
+
+
+
 
         }
     }

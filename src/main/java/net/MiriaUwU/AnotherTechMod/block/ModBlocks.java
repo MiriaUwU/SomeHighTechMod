@@ -5,10 +5,7 @@ import net.MiriaUwU.AnotherTechMod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -31,8 +28,6 @@ public  static final DeferredBlock<Block> Tin_ore = registerblock("tin_ore",
 public static final DeferredBlock<Block> Brass_block = registerblock("brass_block",
         () -> new Block(BlockBehaviour.Properties.of()
                 .strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
-
-
 
 
 
