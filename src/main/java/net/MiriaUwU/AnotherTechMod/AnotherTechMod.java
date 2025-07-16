@@ -3,6 +3,7 @@ package net.MiriaUwU.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.block.ModBlocks;
 import net.MiriaUwU.AnotherTechMod.client.OilFogHandler;
 import net.MiriaUwU.AnotherTechMod.fluid.OilFluids;
+import net.MiriaUwU.AnotherTechMod.init.ModFlammables;
 import net.MiriaUwU.AnotherTechMod.item.ModCreativeModeTabs;
 import net.MiriaUwU.AnotherTechMod.item.ModItems;
 import net.minecraft.resources.ResourceLocation;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.MaceItem;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.fml.ModLoadingContext;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -40,13 +42,13 @@ public class AnotherTechMod {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
+
+
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public AnotherTechMod(IEventBus modEventBus, ModContainer modContainer) {
-        // Register the commonSetup method for modloading
+
         modEventBus.addListener(this::commonSetup);
-
-
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
@@ -70,6 +72,8 @@ public class AnotherTechMod {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(ModFlammables::registerflammables);
+
 
     }
 

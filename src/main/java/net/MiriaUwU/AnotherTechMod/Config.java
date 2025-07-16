@@ -19,6 +19,14 @@ public class Config {
             .comment("A magic number")
             .defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE);
 
+
+    // Your new config value for oil flammability
+    public static final ModConfigSpec.BooleanValue OIL_FLAMMABLE = BUILDER
+            .comment("Should oil catch fire when exposed to flames?")
+            .define("oilFlammable", false);
+
+
+
     public static final ModConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
             .comment("What you want the introduction message to be for the magic number")
             .define("magicNumberIntroduction", "The magic number is... ");

@@ -1,13 +1,13 @@
 package net.MiriaUwU.AnotherTechMod.fluid;
 
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
+import net.MiriaUwU.AnotherTechMod.block.OilBlock;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.FlowingFluid;
@@ -35,7 +35,7 @@ public class OilFluids {
 
     public static final DeferredHolder<Item, BucketItem> OIL_BUCKET = BUCKETS.register("oil_bucket", () -> new BucketItem(OIL_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
-    public static final DeferredHolder<Block, LiquidBlock> OIL_BLOCK = SOURCEBLOCKS.register("oil_block", () -> new LiquidBlock(OIL_SOURCE.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
+    public static final DeferredHolder<Block, LiquidBlock> OIL_BLOCK = SOURCEBLOCKS.register("oil_block", () -> new OilBlock(OIL_SOURCE.get(), BlockBehaviour.Properties.of().noCollission().strength(100f)));
 
     public static void register(IEventBus modbus) {
         FLUID_TYPES.register(modbus);
