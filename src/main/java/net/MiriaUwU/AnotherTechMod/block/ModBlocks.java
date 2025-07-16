@@ -30,6 +30,11 @@ public static final DeferredBlock<Block> Brass_block = registerblock("brass_bloc
                 .strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
 
+    public static final DeferredBlock<Block> Bronze_block = registerblock("bronze_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+
+
 
 
   private static <T extends Block> DeferredBlock<T> registerblock(String name, Supplier<T> block) {

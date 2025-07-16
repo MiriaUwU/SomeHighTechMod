@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "yetanothertechmod:bronze_block"
+    }
+  ],
+  "result": {
+    "id": "yetanothertechmod:bronze",
+    "count": 9
+  }
+}

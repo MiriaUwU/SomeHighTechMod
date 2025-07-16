@@ -17,6 +17,9 @@ public static final DeferredItem<Item> Tin = ITEMS.register("tin",
     public static final DeferredItem<Item> RawTin = ITEMS.register("rawtin",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> Bronze = ITEMS.register("bronze",
+            () -> new Item(new Item.Properties()));
+
 
 
 

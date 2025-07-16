@@ -27,6 +27,7 @@ public class ModCreativeModeTabs {
                       output.accept(ModItems.Brass);
                       output.accept(ModItems.Tin);
                       output.accept(ModItems.RawTin);
+                      output.accept(ModItems.Bronze);
                   }) .build());
 
 
@@ -39,6 +40,7 @@ public class ModCreativeModeTabs {
                       output.accept(ModBlocks.Brass_block);
                       output.accept(ModBlocks.Tin_Block);
                       output.accept(ModBlocks.Tin_ore);
+                      output.accept(ModBlocks.Bronze_block);
                   }) .build());
 
 

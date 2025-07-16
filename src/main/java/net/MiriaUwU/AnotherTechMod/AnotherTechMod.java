@@ -83,12 +83,14 @@ public class AnotherTechMod {
           event.accept(Tin);
           event.accept(Brass);
           event.accept(RawTin);
+          event.accept(Bronze);
       }
 
       if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
           event.accept(ModBlocks.Tin_Block);
           event.accept(ModBlocks.Tin_ore);
           event.accept(ModBlocks.Brass_block);
+          event.accept(ModBlocks.Bronze_block);
 
       }
 
