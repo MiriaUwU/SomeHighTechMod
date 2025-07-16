@@ -2,9 +2,9 @@ package net.MiriaUwU.AnotherTechMod.fluid;
 
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.block.OilBlock;
+import net.MiriaUwU.AnotherTechMod.item.custom.FuelBucketItem;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -33,7 +33,15 @@ public class OilFluids {
     public static final DeferredHolder<Fluid, FlowingFluid> OIL_SOURCE = FLUIDS.register("oil_source", () -> new BaseFlowingFluid.Source(liquidProperties()));
     public static final DeferredHolder<Fluid, FlowingFluid> OIL_FLOWING = FLUIDS.register("oil_flowing", () -> new BaseFlowingFluid.Flowing(liquidProperties()));
 
-    public static final DeferredHolder<Item, BucketItem> OIL_BUCKET = BUCKETS.register("oil_bucket", () -> new BucketItem(OIL_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredHolder<Item, FuelBucketItem> OIL_BUCKET =
+            BUCKETS.register("oil_bucket",
+                    () -> new FuelBucketItem(
+                            OIL_SOURCE.get(),
+                            new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1),
+                            1600
+                    )
+            );;
+
 
     public static final DeferredHolder<Block, LiquidBlock> OIL_BLOCK = SOURCEBLOCKS.register("oil_block", () -> new OilBlock(OIL_SOURCE.get(), BlockBehaviour.Properties.of().noCollission().strength(100f)));
 

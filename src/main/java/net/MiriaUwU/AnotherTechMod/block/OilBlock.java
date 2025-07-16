@@ -53,7 +53,6 @@ public class OilBlock extends LiquidBlock {
             }
         }
 
-        // Also explicitly check the block one above
         if (!ignite) {
             BlockState aboveState = level.getBlockState(pos.above());
             if (aboveState.is(Blocks.FIRE)) {
@@ -69,24 +68,24 @@ public class OilBlock extends LiquidBlock {
     }
 
     private void combust(ServerLevel level, BlockPos pos) {
-        // Remove oil and replace with fire
+        // this removes the oil and replaces it with fire
         level.removeBlock(pos, false);
         level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 3);
 
-        // Play fire ignition sound
+        // plays fire ignition sound
         level.playSound(null, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
 
-        // Explosion (optional)
+        // explodes, can be turned off in configs
         level.explode(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
                 2.0F, Level.ExplosionInteraction.BLOCK);
 
-        // Spread ignition to adjacent oil blocks
+        // spreads the fire to other oil blocks
         for (Direction dir : Direction.values()) {
             BlockPos adjacentPos = pos.relative(dir);
             BlockState adjacentState = level.getBlockState(adjacentPos);
 
             if (adjacentState.is(this)) {  // Checks if adjacent block is oil block
-                // Schedule a tick for the adjacent oil block to ignite after some delay
+                // schedule a tick for the other oil block to ignite after some delay
                 int delay = 20 + level.random.nextInt(20); // 1 to 2 seconds
                 level.scheduleTick(adjacentPos, this, delay);
             }

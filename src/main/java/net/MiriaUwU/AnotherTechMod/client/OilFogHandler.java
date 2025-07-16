@@ -5,7 +5,6 @@ import net.MiriaUwU.AnotherTechMod.fluid.OilFluids;
 import net.minecraft.client.Camera;
 import net.minecraft.world.level.material.FluidState;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 

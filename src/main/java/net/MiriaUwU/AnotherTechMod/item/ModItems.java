@@ -1,9 +1,6 @@
 package net.MiriaUwU.AnotherTechMod.item;
-
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
-import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -19,12 +16,6 @@ public static final DeferredItem<Item> Tin = ITEMS.register("tin",
 
     public static final DeferredItem<Item> RawTin = ITEMS.register("rawtin",
             () -> new Item(new Item.Properties()));
-
-
-
-
-
-
 
 
 
