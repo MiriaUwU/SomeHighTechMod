@@ -2,22 +2,21 @@ package net.MiriaUwU.AnotherTechMod;
 
 import net.MiriaUwU.AnotherTechMod.block.ModBlocks;
 import net.MiriaUwU.AnotherTechMod.client.OilFogHandler;
+import net.MiriaUwU.AnotherTechMod.entity.ModBlockEntities;
 import net.MiriaUwU.AnotherTechMod.fluid.OilFluids;
 import net.MiriaUwU.AnotherTechMod.init.ModFlammables;
 import net.MiriaUwU.AnotherTechMod.item.ModCreativeModeTabs;
 import net.MiriaUwU.AnotherTechMod.item.ModItems;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BucketItem;
+
+import net.MiriaUwU.AnotherTechMod.screen.ModMenuTypes;
+import net.MiriaUwU.AnotherTechMod.screen.custom.DistillerScreen;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.MaceItem;
 import net.minecraft.world.level.ItemLike;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -32,7 +31,6 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 import static net.MiriaUwU.AnotherTechMod.item.ModItems.*;
-import static net.MiriaUwU.AnotherTechMod.item.ModItems.register;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(AnotherTechMod.MOD_ID)
@@ -62,6 +60,8 @@ public class AnotherTechMod {
         ModBlocks.register(modEventBus);
         OilFluids.register(modEventBus);
         OilFogHandler.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
 
         // Register the item to a creative tab
@@ -116,8 +116,17 @@ public class AnotherTechMod {
         static void onClientSetup(FMLClientSetupEvent event) {
 
 
-
-
         }
+
+      @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.DISTILLER__MENU.get(), DistillerScreen::new);
+      }
+
+
+
+
+
+
     }
 }

@@ -41,6 +41,7 @@ public class ModCreativeModeTabs {
                       output.accept(ModBlocks.Tin_Block);
                       output.accept(ModBlocks.Tin_ore);
                       output.accept(ModBlocks.Bronze_block);
+                      output.accept(ModBlocks.Distiller);
                   }) .build());
 
 

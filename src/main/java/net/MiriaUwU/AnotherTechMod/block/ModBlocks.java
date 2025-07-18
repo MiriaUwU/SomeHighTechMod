@@ -1,7 +1,7 @@
 package net.MiriaUwU.AnotherTechMod.block;
 
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
-import net.MiriaUwU.AnotherTechMod.item.ModItems;
+import net.MiriaUwU.AnotherTechMod.block.custom.DistillerBlock;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -12,6 +12,8 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
+
+import static net.MiriaUwU.AnotherTechMod.item.ModItems.ITEMS;
 
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
@@ -35,6 +37,10 @@ public static final DeferredBlock<Block> Brass_block = registerblock("brass_bloc
                     .strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
 
+    public static final DeferredBlock<Block> Distiller = registerblock("distiller",
+            () -> new DistillerBlock(BlockBehaviour.Properties.of()));
+
+
 
 
   private static <T extends Block> DeferredBlock<T> registerblock(String name, Supplier<T> block) {
@@ -56,7 +62,7 @@ public static final DeferredBlock<Block> Brass_block = registerblock("brass_bloc
 
 
  private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-     ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+     ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
  }
 
 
