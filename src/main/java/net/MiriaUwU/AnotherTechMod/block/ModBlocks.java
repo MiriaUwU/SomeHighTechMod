@@ -38,7 +38,8 @@ public static final DeferredBlock<Block> Brass_block = registerblock("brass_bloc
 
 
     public static final DeferredBlock<Block> Distiller = registerblock("distiller",
-            () -> new DistillerBlock(BlockBehaviour.Properties.of()));
+            () -> new DistillerBlock(BlockBehaviour.Properties.of()
+                    .strength(4F).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
 
 

@@ -4,7 +4,9 @@
     "yetanothertechmod:tin_block",
     "yetanothertechmod:tin_ore",
     "yetanothertechmod:brass_block",
-    "yetanothertechmod:bronze_block"
+    "yetanothertechmod:bronze_block",
+    "yetanothertechmod:distiller",
+
 
   ]
 }
