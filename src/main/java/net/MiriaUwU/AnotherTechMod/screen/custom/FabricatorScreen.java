@@ -9,16 +9,18 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class DistillerScreen extends AbstractContainerScreen<DistillerMenu> {
+public class FabricatorScreen extends AbstractContainerScreen<FabricatorMenu> {
 
     private static final ResourceLocation GUI_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(AnotherTechMod.MOD_ID,"textures/gui/distiller/distiller_gui.png");
+            ResourceLocation.fromNamespaceAndPath(AnotherTechMod.MOD_ID,"textures/gui/fabricator/fabricator_gui.png");
     private static final ResourceLocation ARROW_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(AnotherTechMod.MOD_ID,"textures/gui/arrow_progress.png");
 
 
-    public DistillerScreen(DistillerMenu menu, Inventory playerInventory, Component title) {
+    public FabricatorScreen(FabricatorMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
+        this.imageWidth = 256;
+        this.imageHeight = 256;
     }
 
     @Override
@@ -46,9 +48,11 @@ public class DistillerScreen extends AbstractContainerScreen<DistillerMenu> {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
 
+
+
     }
-        @Override
-        public DistillerMenu getMenu() {
-            return this.menu;
-        }
+    @Override
+    public FabricatorMenu getMenu() {
+        return this.menu;
+    }
     }

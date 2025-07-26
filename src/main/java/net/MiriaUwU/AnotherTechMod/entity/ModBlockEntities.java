@@ -17,6 +17,16 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("distiller_be", () -> BlockEntityType.Builder.of(
                     DistillerBlockEntity::new, ModBlocks.Distiller.get()).build(null));
 
+
+    public static final Supplier<BlockEntityType<FabricatorBlockEntity>> FABRICATOR_BE =
+            BLOCK_ENTITIES.register("fabricator_be", () -> BlockEntityType.Builder.of(
+                    FabricatorBlockEntity::new, ModBlocks.Fabricator.get()).build(null));
+
+
+
+
+
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

@@ -2,6 +2,7 @@ package net.MiriaUwU.AnotherTechMod.block;
 
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.block.custom.DistillerBlock;
+import net.MiriaUwU.AnotherTechMod.block.custom.FabricatorBlock;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -40,6 +41,12 @@ public static final DeferredBlock<Block> Brass_block = registerblock("brass_bloc
     public static final DeferredBlock<Block> Distiller = registerblock("distiller",
             () -> new DistillerBlock(BlockBehaviour.Properties.of()
                     .strength(4F).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> Fabricator = registerblock("fabricator",
+            () -> new FabricatorBlock(BlockBehaviour.Properties.of()
+                    .strength(4F).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+
+
 
 
 
