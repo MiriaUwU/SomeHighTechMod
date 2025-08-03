@@ -1,4 +1,4 @@
-package net.MiriaUwU.AnotherTechMod.block;
+package net.MiriaUwU.AnotherTechMod.block.custom;
 
 import net.MiriaUwU.AnotherTechMod.Config;
 import net.minecraft.core.BlockPos;

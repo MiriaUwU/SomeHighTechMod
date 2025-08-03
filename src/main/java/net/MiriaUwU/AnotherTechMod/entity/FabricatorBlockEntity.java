@@ -119,7 +119,7 @@ public class FabricatorBlockEntity extends BlockEntity implements MenuProvider, 
     }
 
     private void craftItem() {
-        ItemStack output = new ItemStack(ModItems.Bronze.get(), 1); // Example output
+        ItemStack output = new ItemStack(ModItems.SteelDust.get(), 2); // Example output
         itemHandler.extractItem(INPUT_SLOT_1, 1, false);
         itemHandler.extractItem(INPUT_SLOT_2, 1, false);
 
@@ -147,11 +147,11 @@ public class FabricatorBlockEntity extends BlockEntity implements MenuProvider, 
     private boolean hasRecipe() {
         ItemStack input1 = itemHandler.getStackInSlot(INPUT_SLOT_1);
         ItemStack input2 = itemHandler.getStackInSlot(INPUT_SLOT_2);
-        ItemStack output = new ItemStack(ModItems.Bronze.get(), 1); // Example recipe result
+        ItemStack output = new ItemStack(ModItems.SteelDust.get(), 2); // Example recipe result
 
         return !input1.isEmpty() && !input2.isEmpty()
                 && input1.is(Items.IRON_INGOT)   // Vanilla Iron Ingot
-                && input2.is(Items.COAL)     // Example second input
+                && input2.is(ModItems.CoalDust)     // Coal dust
                 && canInsertItemIntoOutputSlot(output)
                 && canInsertAmountIntoOutputSlot(output.getCount());
     }

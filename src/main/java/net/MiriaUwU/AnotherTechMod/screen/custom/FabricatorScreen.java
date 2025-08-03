@@ -19,8 +19,6 @@ public class FabricatorScreen extends AbstractContainerScreen<FabricatorMenu> {
 
     public FabricatorScreen(FabricatorMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
-        this.imageWidth = 256;
-        this.imageHeight = 256;
     }
 
     @Override
@@ -39,7 +37,7 @@ public class FabricatorScreen extends AbstractContainerScreen<FabricatorMenu> {
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting()) {
-            guiGraphics.blit(ARROW_TEXTURE,x + 73, y + 35, 0, 0, menu.getScaledArrowProgress(), 16, 24, 16);
+            guiGraphics.blit(ARROW_TEXTURE,x + 90, y + 35, 0, 0, menu.getScaledArrowProgress(), 16, 24, 16);
         }
     }
 

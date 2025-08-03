@@ -20,6 +20,15 @@ public static final DeferredItem<Item> Tin = ITEMS.register("tin",
     public static final DeferredItem<Item> Bronze = ITEMS.register("bronze",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> CoalDust = ITEMS.register("coaldust",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SteelDust = ITEMS.register("steeldust",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> Steel = ITEMS.register("steel",
+            () -> new Item(new Item.Properties()));
+
 
 
 

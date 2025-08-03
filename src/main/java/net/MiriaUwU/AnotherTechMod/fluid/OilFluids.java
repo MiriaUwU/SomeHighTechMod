@@ -1,7 +1,7 @@
 package net.MiriaUwU.AnotherTechMod.fluid;
 
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
-import net.MiriaUwU.AnotherTechMod.block.OilBlock;
+import net.MiriaUwU.AnotherTechMod.block.custom.OilBlock;
 import net.MiriaUwU.AnotherTechMod.item.custom.FuelBucketItem;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;

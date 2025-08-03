@@ -32,9 +32,9 @@ public class FabricatorMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         // Fabricator has 3 slots: 2 inputs and 1 output
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 0, 21, 20));  // Input 1
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 21, 52));  // Input 2
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 2, 122, 36)); // Output
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 0, 30, 17));  // Input 1
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 30, 53));  // Input 2
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 2, 124, 35)); // Output
 
         addDataSlots(data);
     }

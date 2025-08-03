@@ -28,6 +28,9 @@ public class ModCreativeModeTabs {
                       output.accept(ModItems.Tin);
                       output.accept(ModItems.RawTin);
                       output.accept(ModItems.Bronze);
+                      output.accept(ModItems.CoalDust);
+                      output.accept(ModItems.SteelDust);
+                      output.accept(ModItems.Steel);
                   }) .build());
 
 
