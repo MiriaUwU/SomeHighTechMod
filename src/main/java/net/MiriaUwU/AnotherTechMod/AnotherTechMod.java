@@ -11,6 +11,7 @@ import net.MiriaUwU.AnotherTechMod.item.ModItems;
 import net.MiriaUwU.AnotherTechMod.screen.ModMenuTypes;
 import net.MiriaUwU.AnotherTechMod.screen.custom.DistillerScreen;
 import net.MiriaUwU.AnotherTechMod.screen.custom.FabricatorScreen;
+import net.MiriaUwU.AnotherTechMod.screen.custom.PrimitiveAlloyStationScreen;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
@@ -123,6 +124,7 @@ public class AnotherTechMod {
         public static void registerScreens(RegisterMenuScreensEvent event) {
           event.register(ModMenuTypes.DISTILLER__MENU.get(), DistillerScreen::new);
           event.register(ModMenuTypes.FABRICATOR_MENU.get(), FabricatorScreen::new);
+          event.register(ModMenuTypes.PRIMITIVEALLOYSTATION_MENU.get(), PrimitiveAlloyStationScreen::new);
 
 
       }

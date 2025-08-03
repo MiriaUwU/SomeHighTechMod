@@ -22,11 +22,12 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
+import static net.MiriaUwU.AnotherTechMod.block.ModBlocks.SOURCEBLOCKS;
+import static net.MiriaUwU.AnotherTechMod.item.ModItems.BUCKETS;
+
 public class OilFluids {
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, AnotherTechMod.MOD_ID);
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(BuiltInRegistries.FLUID, AnotherTechMod.MOD_ID);
-    public static final DeferredRegister<Item> BUCKETS = DeferredRegister.createItems(AnotherTechMod.MOD_ID);
-    public static final DeferredRegister<Block> SOURCEBLOCKS = DeferredRegister.createBlocks(AnotherTechMod.MOD_ID);
 
     public static final DeferredHolder<FluidType, FluidType> LIQUID_TYPE = FLUID_TYPES.register("oil", () -> new FluidType(FluidType.Properties.create().descriptionId("oil_liquid")));
 
@@ -40,7 +41,7 @@ public class OilFluids {
                             new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1),
                             1600
                     )
-            );;
+            );
 
 
     public static final DeferredHolder<Block, LiquidBlock> OIL_BLOCK = SOURCEBLOCKS.register("oil_block", () -> new OilBlock(OIL_SOURCE.get(), BlockBehaviour.Properties.of().noCollission().strength(100f)));

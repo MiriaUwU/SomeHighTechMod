@@ -3,6 +3,7 @@ package net.MiriaUwU.AnotherTechMod.screen;
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.screen.custom.DistillerMenu;
 import net.MiriaUwU.AnotherTechMod.screen.custom.FabricatorMenu;
+import net.MiriaUwU.AnotherTechMod.screen.custom.PrimitiveAlloyStationMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -22,6 +23,10 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<FabricatorMenu>> FABRICATOR_MENU =
             registerMenuType("fabricator_menu", FabricatorMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<PrimitiveAlloyStationMenu>> PRIMITIVEALLOYSTATION_MENU =
+            registerMenuType("primitivealloystation_menu",PrimitiveAlloyStationMenu::new);
+
 
 
 

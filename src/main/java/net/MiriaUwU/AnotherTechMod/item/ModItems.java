@@ -29,7 +29,7 @@ public static final DeferredItem<Item> Tin = ITEMS.register("tin",
     public static final DeferredItem<Item> Steel = ITEMS.register("steel",
             () -> new Item(new Item.Properties()));
 
-
+    public static final DeferredRegister<Item> BUCKETS = DeferredRegister.createItems(AnotherTechMod.MOD_ID);
 
 
     public static void register(IEventBus eventBus) {

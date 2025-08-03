@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "north": "yetanothertechmod:block/primitive_alloy_station_block_front",
+    "south": "yetanothertechmod:block/primitive_alloy_station_block_side",
+    "east":  "yetanothertechmod:block/primitive_alloy_station_block_side",
+    "west":  "yetanothertechmod:block/primitive_alloy_station_block_side",
+    "up":    "yetanothertechmod:block/primitive_alloy_station_block_side",
+    "down":  "yetanothertechmod:block/primitive_alloy_station_block_side"
+  }
+}

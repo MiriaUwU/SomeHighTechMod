@@ -23,6 +23,10 @@ public class ModBlockEntities {
                     FabricatorBlockEntity::new, ModBlocks.Fabricator.get()).build(null));
 
 
+    public static final Supplier<BlockEntityType<PrimitiveAlloyStationBlockEntity>> PRIMATIVEALLOYSTATION_BE =
+            BLOCK_ENTITIES.register("primativealloystation_be", () -> BlockEntityType.Builder.of(
+                    PrimitiveAlloyStationBlockEntity::new, ModBlocks.PRIMATIVEALLOYSTATIONBLOCK.get()).build(null));
+
 
 
 

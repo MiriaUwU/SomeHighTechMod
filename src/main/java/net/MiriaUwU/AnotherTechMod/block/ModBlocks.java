@@ -3,11 +3,13 @@ package net.MiriaUwU.AnotherTechMod.block;
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.block.custom.DistillerBlock;
 import net.MiriaUwU.AnotherTechMod.block.custom.FabricatorBlock;
+import net.MiriaUwU.AnotherTechMod.block.custom.PrimitiveAlloyStationBlock;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -47,11 +49,17 @@ public static final DeferredBlock<Block> Brass_block = registerblock("brass_bloc
                     .strength(4F).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
 
+    public static final DeferredRegister<Block> SOURCEBLOCKS = DeferredRegister.createBlocks(AnotherTechMod.MOD_ID);
+
+    public static final DeferredBlock<Block> PRIMATIVEALLOYSTATIONBLOCK = registerblock("primitive_alloy_station_block",
+            () -> new PrimitiveAlloyStationBlock(BlockBehaviour.Properties.of()
+                    .strength(4F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE)));
 
 
 
 
-  private static <T extends Block> DeferredBlock<T> registerblock(String name, Supplier<T> block) {
+
+    private static <T extends Block> DeferredBlock<T> registerblock(String name, Supplier<T> block) {
       DeferredBlock<T> toreturn = BLOCKS.register(name, block);
       registerBlockItem(name, toreturn);
       return toreturn;
