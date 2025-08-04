@@ -2,15 +2,19 @@ package net.MiriaUwU.AnotherTechMod.item;
 
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.block.ModBlocks;
+import net.MiriaUwU.AnotherTechMod.fluid.ModFluids;
 import net.MiriaUwU.AnotherTechMod.fluid.OilFluids;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -55,6 +59,10 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.yetanothertechmod.fluids"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept((ItemLike) OilFluids.OIL_BUCKET);
+
+                        for (DeferredHolder<Item, BucketItem> bucketHolder : ModFluids.getBuckets()) {
+                            output.accept(bucketHolder.get());
+                        }
                     }) .build());
 
 

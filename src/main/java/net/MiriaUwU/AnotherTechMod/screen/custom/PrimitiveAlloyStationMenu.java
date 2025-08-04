@@ -37,14 +37,23 @@ public class PrimitiveAlloyStationMenu extends AbstractContainerMenu {
         this.blockEntity = blockEntity;
         this.data = data;
 
-        // Add your block entity slots (assuming 10 slots)
-        for (int i = 0; i < 10; i++) {
-            // Positions here need to be adjusted to your GUI layout
-            // For example, arrange slots vertically or in a grid:
-            int x = 8 + (i % 5) * 18; // 5 slots per row
-            int y = 18 + (i / 5) * 18;
-            this.addSlot(new SlotItemHandler(blockEntity.itemHandler, i, x, y));
-        }
+        // Explicit slot positions matching 3-4-3 layout
+
+        // Top row (3 slots)
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 0, 30, 17));
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 48, 17));
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 2, 66, 17));
+
+        // Middle row (4 slots)
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 3, 12, 35));
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 4, 30, 35));
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 5, 48, 35));
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 6, 66, 35));
+
+        // Bottom row (3 slots)
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 7, 30, 53));
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 8, 48, 53));
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 9, 66, 53));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -53,18 +62,19 @@ public class PrimitiveAlloyStationMenu extends AbstractContainerMenu {
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
-        for (int row = 0; row < PLAYER_INVENTORY_ROW_COUNT; row++) {
-            for (int col = 0; col < PLAYER_INVENTORY_COLUMN_COUNT; col++) {
-                this.addSlot(new Slot(playerInventory, col + row * 9 + 9, 8 + col * 18, 86 + row * 18));
+        for (int i = 0; i < 3; ++i) {
+            for (int l = 0; l < 9; ++l) {
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
-        for (int i = 0; i < HOTBAR_SLOT_COUNT; i++) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+        for (int i = 0; i < 9; ++i) {
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
+
 
     @Override
     public boolean stillValid(net.minecraft.world.entity.player.Player player) {

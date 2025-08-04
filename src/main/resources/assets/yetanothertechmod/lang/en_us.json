@@ -4,9 +4,15 @@
  "item.yetanothertechmod.rawtin": "Raw Tin",
  "item.yetanothertechmod.oil_bucket": "Oil Bucket",
  "item.yetanothertechmod.bronze": "Bronze",
+ "item.yetanothertechmod.molten_tin_bucket": "Molten Tin Bucket",
+ "item.yetanothertechmod.molten_copper_bucket": "Molten Copper Bucket",
+ "item.yetanothertechmod.molten_iron_bucket": "Molten Iron Bucket",
 
 
 
+ "fluid.molten_copper": "Molten Copper",
+ "fluid.molten_tin": "Molten Tin",
+ "fluid.molten_iron": "Molten Iron",
 
 
 
@@ -15,6 +21,7 @@
  "block.yetanothertechmod.brass_block": "Brass Block",
  "block.yetanothertechmod.bronze_block": "Bronze Block",
  "block.yetanothertechmod.distiller": "Tier 1 Distiller",
+ "block.yetanothertechmod.primitive_alloy_station_block": "Primitive alloy Station",
 
 
  "creativetab.yetanothertechmod.ingots_items" : "Ingots",

@@ -3,6 +3,7 @@ package net.MiriaUwU.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.block.ModBlocks;
 import net.MiriaUwU.AnotherTechMod.client.OilFogHandler;
 import net.MiriaUwU.AnotherTechMod.entity.ModBlockEntities;
+import net.MiriaUwU.AnotherTechMod.fluid.ModFluids;
 import net.MiriaUwU.AnotherTechMod.fluid.OilFluids;
 import net.MiriaUwU.AnotherTechMod.init.ModFlammables;
 import net.MiriaUwU.AnotherTechMod.item.ModCreativeModeTabs;
@@ -64,7 +65,7 @@ public class AnotherTechMod {
         OilFogHandler.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
-
+        ModFluids.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
