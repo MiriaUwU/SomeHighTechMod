@@ -58,6 +58,15 @@ public class ModFluids {
                     12000,
                     ResourceLocation.fromNamespaceAndPath("yetanothertechmod", "block/molten_iron_still"),
                     ResourceLocation.fromNamespaceAndPath("yetanothertechmod", "block/molten_iron_flowing")
+            ),
+            new FluidDefinition(
+                    "molten_bronze",
+                    0xFFCD7F32,
+                    1050,
+                    5500,
+                    9500,
+                    ResourceLocation.fromNamespaceAndPath("yetanothertechmod", "block/molten_bronze_still"),
+                    ResourceLocation.fromNamespaceAndPath("yetanothertechmod", "block/molten_bronze_flowing")
             )
             // Add more here
     );

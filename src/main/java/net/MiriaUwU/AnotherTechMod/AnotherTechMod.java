@@ -3,12 +3,14 @@ package net.MiriaUwU.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.block.ModBlocks;
 import net.MiriaUwU.AnotherTechMod.client.OilFogHandler;
 import net.MiriaUwU.AnotherTechMod.entity.ModBlockEntities;
+import net.MiriaUwU.AnotherTechMod.fluid.CapabilityHandler;
 import net.MiriaUwU.AnotherTechMod.fluid.ModFluids;
 import net.MiriaUwU.AnotherTechMod.fluid.OilFluids;
 import net.MiriaUwU.AnotherTechMod.init.ModFlammables;
 import net.MiriaUwU.AnotherTechMod.item.ModCreativeModeTabs;
 import net.MiriaUwU.AnotherTechMod.item.ModItems;
 
+import net.MiriaUwU.AnotherTechMod.recipes.ModRecipes;
 import net.MiriaUwU.AnotherTechMod.screen.ModMenuTypes;
 import net.MiriaUwU.AnotherTechMod.screen.custom.DistillerScreen;
 import net.MiriaUwU.AnotherTechMod.screen.custom.FabricatorScreen;
@@ -66,6 +68,8 @@ public class AnotherTechMod {
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModFluids.register(modEventBus);
+        ModRecipes.register(modEventBus);
+        modEventBus.addListener(CapabilityHandler::registerCapabilities);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

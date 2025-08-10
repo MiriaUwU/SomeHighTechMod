@@ -1,0 +1,9 @@
+{
+  "type": "yetanothertechmod:primitive_alloying",
+  "input": {
+    "item": "yetanothertechmod:tin"
+  },
+  "fluid": "yetanothertechmod:molten_tin_source",
+  "amount": 144,
+  "processingTime": 40
+}

@@ -25,8 +25,7 @@ public class ModMenuTypes {
             registerMenuType("fabricator_menu", FabricatorMenu::new);
 
     public static final DeferredHolder<MenuType<?>, MenuType<PrimitiveAlloyStationMenu>> PRIMITIVEALLOYSTATION_MENU =
-            registerMenuType("primitivealloystation_menu",PrimitiveAlloyStationMenu::new);
-
+            registerMenuType("primitivealloystation_menu", PrimitiveAlloyStationMenu::new);
 
 
 

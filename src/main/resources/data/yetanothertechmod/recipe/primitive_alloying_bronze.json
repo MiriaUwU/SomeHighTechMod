@@ -1,0 +1,12 @@
+{
+  "type": "yetanothertechmod:primitive_alloying",
+  "inputItems": [
+    "minecraft:copper_ingot",
+    "yetanothertechmod:tin"
+  ],
+  "outputFluid": {
+    "fluid": "yetanothertechmod:molten_bronze",
+    "amount": 288
+  },
+  "processingTime": 200
+}

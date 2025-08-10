@@ -1,0 +1,9 @@
+{
+  "type": "yetanothertechmod:primitive_alloying",
+  "input": {
+    "item": "minecraft:copper_ingot"
+  },
+  "fluid": "yetanothertechmod:molten_copper_source",
+  "amount": 144,
+  "processingTime": 40
+}
