@@ -56,6 +56,7 @@ public class PrimitiveAlloyStationBlockEntity extends BlockEntity implements Men
         }
     };
 
+
     private static final int LIQUID_PER_INGOT = 144; // mB per ingot
     private static final int MAX_METAL_CAPACITY = 1440; // 10 ingots worth
 

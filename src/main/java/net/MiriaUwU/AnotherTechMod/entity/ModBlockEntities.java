@@ -27,6 +27,11 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("primativealloystation_be", () -> BlockEntityType.Builder.of(
                     PrimitiveAlloyStationBlockEntity::new, ModBlocks.PRIMATIVEALLOYSTATIONBLOCK.get()).build(null));
 
+    public static final Supplier<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL =
+            BLOCK_ENTITIES.register("solar_panel", () ->
+                    BlockEntityType.Builder.of(SolarPanelBlockEntity::new,
+                            ModBlocks.SOLAR_PANEL.get()).build(null));
+
 
 
 

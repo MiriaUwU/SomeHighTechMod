@@ -2,6 +2,7 @@ package net.MiriaUwU.AnotherTechMod.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
+import net.MiriaUwU.AnotherTechMod.entity.PrimitiveAlloyStationBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -25,6 +26,7 @@ public class PrimitiveAlloyStationScreen extends AbstractContainerScreen<Primiti
 
     private static final ResourceLocation ARROW_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(AnotherTechMod.MOD_ID, "textures/gui/arrow_progress.png");
+
 
     // Tank constants - ALL USE LARGER DIMENSIONS NOW
     private static final int TANK_WIDTH = 52;  // Increased from 16 to 52

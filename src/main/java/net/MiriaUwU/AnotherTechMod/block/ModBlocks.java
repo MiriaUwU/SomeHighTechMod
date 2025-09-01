@@ -4,6 +4,7 @@ import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.block.custom.DistillerBlock;
 import net.MiriaUwU.AnotherTechMod.block.custom.FabricatorBlock;
 import net.MiriaUwU.AnotherTechMod.block.custom.PrimitiveAlloyStationBlock;
+import net.MiriaUwU.AnotherTechMod.block.custom.SolarPanelBlock;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -54,6 +55,11 @@ public static final DeferredBlock<Block> Brass_block = registerblock("brass_bloc
     public static final DeferredBlock<Block> PRIMATIVEALLOYSTATIONBLOCK = registerblock("primitive_alloy_station_block",
             () -> new PrimitiveAlloyStationBlock(BlockBehaviour.Properties.of()
                     .strength(4F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.STONE)));
+
+
+    public static final DeferredBlock<Block> SOLAR_PANEL = registerblock("solar_panel",
+            () -> new SolarPanelBlock(BlockBehaviour.Properties.of()
+                    .strength(4F).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).mapColor(MapColor.STONE)));
 
 
 
