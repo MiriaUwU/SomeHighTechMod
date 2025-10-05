@@ -1,5 +1,7 @@
 package net.MiriaUwU.AnotherTechMod.item;
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
+import net.MiriaUwU.AnotherTechMod.block.ModBlocks;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -30,6 +32,8 @@ public static final DeferredItem<Item> Tin = ITEMS.register("tin",
             () -> new Item(new Item.Properties()));
 
     public static final DeferredRegister<Item> BUCKETS = DeferredRegister.createItems(AnotherTechMod.MOD_ID);
+    public static final DeferredItem<BlockItem> ENERGY_CABLE_ITEM = ITEMS.registerSimpleBlockItem("energy_cable", ModBlocks.ENERGY_CABLE);
+    public static final DeferredItem<BlockItem> BATTERY_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("battery_block", ModBlocks.BATTERY_BLOCK);
 
 
     public static void register(IEventBus eventBus) {

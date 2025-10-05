@@ -35,6 +35,7 @@ public class ModCreativeModeTabs {
                       output.accept(ModItems.CoalDust);
                       output.accept(ModItems.SteelDust);
                       output.accept(ModItems.Steel);
+                      output.accept(ModItems.ENERGY_CABLE_ITEM);
                   }) .build());
 
 
@@ -51,6 +52,7 @@ public class ModCreativeModeTabs {
                       output.accept(ModBlocks.Distiller);
                       output.accept(ModBlocks.SOLAR_PANEL);
                       output.accept(ModBlocks.PRIMATIVEALLOYSTATIONBLOCK);
+                      output.accept(ModItems.BATTERY_BLOCK_ITEM);
                   }) .build());
 
 

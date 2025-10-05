@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
@@ -38,8 +39,8 @@ public class ModFluids {
                     1000,
                     6000,
                     10000,
-                    ResourceLocation.fromNamespaceAndPath("yetanothertechmod", "block/molten_copper_still"),
-                    ResourceLocation.fromNamespaceAndPath("yetanothertechmod", "block/molten_copper_flowing")
+                    ResourceLocation.fromNamespaceAndPath (AnotherTechMod.MOD_ID, "block/molten_copper_still"),
+                    ResourceLocation.fromNamespaceAndPath(AnotherTechMod.MOD_ID, "block/molten_copper_flowing")
             ),
             new FluidDefinition(
                     "molten_tin",
@@ -146,11 +147,13 @@ public class ModFluids {
                 event.registerFluidType(new IClientFluidTypeExtensions() {
                     @Override
                     public ResourceLocation getStillTexture() {
+                        System.out.println("[DEBUG] Loading still texture: " + def.stillTexture());
                         return def.stillTexture();
                     }
 
                     @Override
                     public ResourceLocation getFlowingTexture() {
+                        System.out.println("[DEBUG] Loading flowing texture: " + def.flowingTexture());
                         return def.flowingTexture();
                     }
 
@@ -159,12 +162,19 @@ public class ModFluids {
                         return def.color();
                     }
                 }, typeHolder.get());
+            } else {
+                System.err.println("[ERROR] Could not find fluid type for: " + def.name());
             }
         }
     }
 
     public static Fluid getSourceFluid(String name) {
-        return SOURCE_FLUIDS.get(name).get();
+        DeferredHolder<Fluid, BaseFlowingFluid> holder = SOURCE_FLUIDS.get(name);
+        if (holder == null) {
+            System.err.println("[ModFluids] ERROR: Fluid '" + name + "' not found! Available fluids: " + SOURCE_FLUIDS.keySet());
+            return Fluids.EMPTY;
+        }
+        return holder.get();
     }
 
     public static Collection<DeferredHolder<Item, BucketItem>> getBuckets() {

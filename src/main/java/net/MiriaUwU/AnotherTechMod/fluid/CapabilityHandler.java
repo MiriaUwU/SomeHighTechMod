@@ -11,14 +11,25 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 public class CapabilityHandler {
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+
+
+        // Energy capabilities - ADD THESE LINES
         event.registerBlockEntity(
-                Capabilities.FluidHandler.BLOCK,
-                ModBlockEntities.PRIMATIVEALLOYSTATION_BE.get(),
-                (be, context) -> new CombinedFluidHandler(
-                        be.getCopperTank(),
-                        be.getTinTank(),
-                        be.getBronzeTank()
-                )
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.ENERGY_CABLE.get(),
+                (blockEntity, direction) -> blockEntity.getEnergyStorage()
+        );
+
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.BATTERY_BLOCK_ENTITY.get(),
+                (blockEntity, direction) -> blockEntity.getEnergyStorage()
+        );
+
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.SOLAR_PANEL.get(),
+                (blockEntity, direction) -> blockEntity.getEnergyStorage()
         );
     }
 

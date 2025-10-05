@@ -1,0 +1,9 @@
+{
+  "type": "yetanothertechmod:primitive_alloying",
+  "input": {
+    "item": "minecraft:iron_ingot"
+  },
+  "fluid": "yetanothertechmod:molten_iron_source",
+  "amount": 144,
+  "processingTime": 40
+}

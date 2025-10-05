@@ -2,7 +2,9 @@ package net.MiriaUwU.AnotherTechMod.entity;
 
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
 import net.MiriaUwU.AnotherTechMod.block.ModBlockProperties;
+import net.MiriaUwU.AnotherTechMod.client.FluidLayer;
 import net.MiriaUwU.AnotherTechMod.fluid.ModFluids;
+import net.MiriaUwU.AnotherTechMod.fluid.SmeltableFluidsRegistry;
 import net.MiriaUwU.AnotherTechMod.item.ModItems;
 import net.MiriaUwU.AnotherTechMod.recipes.Alloys.PrimitiveAlloyRecipe;
 import net.MiriaUwU.AnotherTechMod.recipes.Alloys.PrimitiveAlloyRecipeInput;
@@ -34,6 +36,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
@@ -56,17 +59,72 @@ public class PrimitiveAlloyStationBlockEntity extends BlockEntity implements Men
         }
     };
 
-
     private static final int LIQUID_PER_INGOT = 144; // mB per ingot
     private static final int MAX_METAL_CAPACITY = 1440; // 10 ingots worth
 
-    // Fluid tanks
-    private final FluidTank moltenCopperTank = createTank(ModFluids.getSourceFluid("molten_copper"), MAX_METAL_CAPACITY);
-    private final FluidTank moltenTinTank = createTank(ModFluids.getSourceFluid("molten_tin"), MAX_METAL_CAPACITY);
-    private final FluidTank moltenBronzeTank = createTank(ModFluids.getSourceFluid("molten_bronze"), MAX_METAL_CAPACITY);
+    // DYNAMIC FLUID SYSTEM - replaces hardcoded tanks
+    private final List<FluidTank> allInputTanks = new ArrayList<>();
+    private final Map<Fluid, FluidTank> fluidTankMap = new HashMap<>();
 
-    // Fluid-to-tank map for dynamic lookup
-    private final Map<Fluid, FluidTank> fluidTankMap;
+    private int alloyingProgress = 0;
+    private int maxAlloyingProgress = 100;
+
+    // DYNAMIC CONTAINER DATA - automatically syncs all tanks
+    private final ContainerData containerData = new ContainerData() {
+        @Override
+        public int get(int index) {
+            if (index == 0) return alloyingProgress;
+            if (index == 1) return maxAlloyingProgress;
+
+            // Dynamically get fluid amounts starting at index 2
+            int tankIndex = index - 2;
+            if (tankIndex >= 0 && tankIndex < allInputTanks.size()) {
+                return allInputTanks.get(tankIndex).getFluidAmount();
+            }
+
+            return 0;
+        }
+
+        @Override
+        public void set(int index, int value) {
+            if (index == 0) {
+                alloyingProgress = value;
+            } else if (index == 1) {
+                maxAlloyingProgress = value;
+            }
+            // Fluid amounts are synced via get(), not set()
+        }
+
+        @Override
+        public int getCount() {
+            // 2 for progress + number of tanks
+            return 2 + allInputTanks.size();
+        }
+    };
+
+    public PrimitiveAlloyStationBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.PRIMATIVEALLOYSTATION_BE.get(), pos, state);
+
+        // Automatically register all fluids from the registry
+        for (String fluidName : SmeltableFluidsRegistry.getAllFluidNames()) {
+            registerFluidTank(fluidName);
+        }
+    }
+
+    /**
+     * Registers a new fluid tank dynamically
+     */
+    private void registerFluidTank(String fluidName) {
+        Fluid fluid = ModFluids.getSourceFluid(fluidName);
+        if (fluid == null || fluid == Fluids.EMPTY) {
+            System.err.println("[Error] Failed to register tank for fluid: " + fluidName);
+            return;
+        }
+
+        FluidTank tank = createTank(fluid, MAX_METAL_CAPACITY);
+        fluidTankMap.put(fluid, tank);
+        allInputTanks.add(tank);
+    }
 
     private FluidTank createTank(Fluid validFluid, int capacity) {
         return new FluidTank(capacity) {
@@ -85,60 +143,71 @@ public class PrimitiveAlloyStationBlockEntity extends BlockEntity implements Men
         };
     }
 
-    private int alloyingProgress = 0;
-    private int maxAlloyingProgress = 100;
-
-    private final ContainerData containerData = new ContainerData() {
-        @Override
-        public int get(int index) {
-            return switch (index) {
-                case 0 -> alloyingProgress;
-                case 1 -> maxAlloyingProgress;
-                case 2 -> moltenCopperTank.getFluidAmount();
-                case 3 -> moltenTinTank.getFluidAmount();
-                case 4 -> moltenBronzeTank.getFluidAmount();
-                default -> 0;
-            };
-        }
-
-        @Override
-        public void set(int index, int value) {
-            switch (index) {
-                case 0 -> alloyingProgress = value;
-                case 1 -> maxAlloyingProgress = value;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 5;
-        }
-    };
-
-    public PrimitiveAlloyStationBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.PRIMATIVEALLOYSTATION_BE.get(), pos, state);
-
-        // Initialize fluidTankMap dynamically
-        fluidTankMap = Map.of(
-                ModFluids.getSourceFluid("molten_copper"), moltenCopperTank,
-                ModFluids.getSourceFluid("molten_tin"), moltenTinTank,
-                ModFluids.getSourceFluid("molten_bronze"), moltenBronzeTank
-        );
-    }
-
     public ContainerData getContainerData() {
         return containerData;
     }
 
-    private final List<FluidTank> fluidTanks = List.of(moltenCopperTank, moltenTinTank); // add more if needed later */);
+    /**
+     * Get all non-empty fluid layers for rendering (DYNAMIC)
+     * @return List of fluid layers from bottom to top
+     */
+    public List<FluidLayer> getFluidLayers() {
+        List<FluidLayer> layers = new ArrayList<>();
 
-    public List<FluidTank> getFluidTanks() {
-        return fluidTanks;
+        // Automatically add all non-empty tanks
+        for (FluidTank tank : allInputTanks) {
+            if (!tank.getFluid().isEmpty() && tank.getFluidAmount() > 0) {
+                layers.add(new FluidLayer(tank.getFluid()));
+            }
+        }
+
+        return layers;
+    }
+
+    /**
+     * Get total fluid amount across all tanks
+     */
+    public int getTotalFluidAmount() {
+        return allInputTanks.stream()
+                .mapToInt(FluidTank::getFluidAmount)
+                .sum();
+    }
+
+    /**
+     * Get maximum total capacity
+     */
+    public int getTotalCapacity() {
+        return allInputTanks.size() * MAX_METAL_CAPACITY;
+    }
+
+    /**
+     * Get a specific tank by fluid type
+     */
+    public FluidTank getTankForFluid(Fluid fluid) {
+        if (fluid == null) return null;
+        return fluidTankMap.get(fluid);
+    }
+
+    /**
+     * Get all fluid tanks
+     */
+    public List<FluidTank> getAllTanks() {
+        return allInputTanks;
+    }
+
+    /**
+     * Get tank by index (for syncing)
+     */
+    public FluidTank getTankByIndex(int index) {
+        if (index >= 0 && index < allInputTanks.size()) {
+            return allInputTanks.get(index);
+        }
+        return null;
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.yourmod.primitive_alloy_station");
+        return Component.translatable("block.yetanothertechmod.primitive_alloy_station");
     }
 
     @Nullable
@@ -152,10 +221,12 @@ public class PrimitiveAlloyStationBlockEntity extends BlockEntity implements Men
         super.saveAdditional(tag, provider);
         tag.put("inventory", itemHandler.serializeNBT(provider));
 
+        // Save all tanks dynamically
         CompoundTag fluidsTag = new CompoundTag();
-        fluidsTag.put("Copper", moltenCopperTank.writeToNBT(provider, new CompoundTag()));
-        fluidsTag.put("Tin", moltenTinTank.writeToNBT(provider, new CompoundTag()));
-        fluidsTag.put("Bronze", moltenBronzeTank.writeToNBT(provider, new CompoundTag()));
+        for (int i = 0; i < allInputTanks.size(); i++) {
+            FluidTank tank = allInputTanks.get(i);
+            fluidsTag.put("Tank_" + i, tank.writeToNBT(provider, new CompoundTag()));
+        }
         tag.put("Fluids", fluidsTag);
 
         tag.putInt("AlloyingProgress", alloyingProgress);
@@ -165,15 +236,19 @@ public class PrimitiveAlloyStationBlockEntity extends BlockEntity implements Men
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
+
         if (tag.contains("inventory")) {
             itemHandler.deserializeNBT(provider, tag.getCompound("inventory"));
         }
 
+        // Load all tanks dynamically
         if (tag.contains("Fluids")) {
             CompoundTag fluidsTag = tag.getCompound("Fluids");
-            moltenCopperTank.readFromNBT(provider, fluidsTag.getCompound("Copper"));
-            moltenTinTank.readFromNBT(provider, fluidsTag.getCompound("Tin"));
-            moltenBronzeTank.readFromNBT(provider, fluidsTag.getCompound("Bronze"));
+            for (int i = 0; i < allInputTanks.size(); i++) {
+                if (fluidsTag.contains("Tank_" + i)) {
+                    allInputTanks.get(i).readFromNBT(provider, fluidsTag.getCompound("Tank_" + i));
+                }
+            }
         }
 
         if (tag.contains("AlloyingProgress")) {
@@ -196,9 +271,6 @@ public class PrimitiveAlloyStationBlockEntity extends BlockEntity implements Men
                 changed = true;
             }
         }
-
-        // ALLOYING TEMPORARILY DISABLED FOR TESTING
-        // We'll re-enable this after melting is confirmed working
 
         if (changed) {
             entity.setChanged();
@@ -223,6 +295,12 @@ public class PrimitiveAlloyStationBlockEntity extends BlockEntity implements Men
         if (recipeOpt.isPresent()) {
             PrimitiveAlloyRecipe recipe = recipeOpt.get().value();
             FluidStack outputFluid = recipe.getOutputFluid();
+
+            // ADD NULL/EMPTY CHECK
+            if (outputFluid.isEmpty()) {
+                System.out.println("[ERROR] Recipe has empty fluid output: " + recipeOpt.get().id());
+                return;
+            }
 
             // Get fluid ID for debugging
             ResourceLocation fluidKey = BuiltInRegistries.FLUID.getKey(outputFluid.getFluid());
@@ -251,40 +329,19 @@ public class PrimitiveAlloyStationBlockEntity extends BlockEntity implements Men
         } else {
             System.out.println("[DEBUG] No recipe found for items");
         }
-        if (recipeOpt.isPresent()) {
-            PrimitiveAlloyRecipe recipe = recipeOpt.get().value();
-            FluidStack outputFluid = recipe.getOutputFluid();
-
-            // ADD NULL/EMPTY CHECK
-            if (outputFluid.isEmpty()) {
-                System.out.println("[ERROR] Recipe has empty fluid output: " + recipeOpt.get().id());
-                return;
-            }
-        }
-    }
-
-    private FluidTank getTankForFluid(Fluid fluid) {
-        if (fluid == null) return null;
-        return fluidTankMap.get(fluid);
-    }
-
-    // Fluid tank getters
-    public FluidTank getCopperTank() {
-        return moltenCopperTank;
-    }
-
-    public FluidTank getTinTank() {
-        return moltenTinTank;
-    }
-
-    public FluidTank getBronzeTank() {
-        return moltenBronzeTank;
     }
 
     // Debug method to fill tanks
     public void debugFillTanks() {
-        moltenCopperTank.fill(new FluidStack(ModFluids.getSourceFluid("molten_copper"), 500), IFluidHandler.FluidAction.EXECUTE);
-        moltenTinTank.fill(new FluidStack(ModFluids.getSourceFluid("molten_tin"), 500), IFluidHandler.FluidAction.EXECUTE);
+        FluidTank copperTank = getTankForFluid(ModFluids.getSourceFluid("molten_copper"));
+        FluidTank tinTank = getTankForFluid(ModFluids.getSourceFluid("molten_tin"));
+
+        if (copperTank != null) {
+            copperTank.fill(new FluidStack(ModFluids.getSourceFluid("molten_copper"), 500), IFluidHandler.FluidAction.EXECUTE);
+        }
+        if (tinTank != null) {
+            tinTank.fill(new FluidStack(ModFluids.getSourceFluid("molten_tin"), 500), IFluidHandler.FluidAction.EXECUTE);
+        }
         setChanged();
     }
 

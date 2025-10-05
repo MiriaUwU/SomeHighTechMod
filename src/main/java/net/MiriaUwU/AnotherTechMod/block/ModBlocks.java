@@ -1,10 +1,7 @@
 package net.MiriaUwU.AnotherTechMod.block;
 
 import net.MiriaUwU.AnotherTechMod.AnotherTechMod;
-import net.MiriaUwU.AnotherTechMod.block.custom.DistillerBlock;
-import net.MiriaUwU.AnotherTechMod.block.custom.FabricatorBlock;
-import net.MiriaUwU.AnotherTechMod.block.custom.PrimitiveAlloyStationBlock;
-import net.MiriaUwU.AnotherTechMod.block.custom.SolarPanelBlock;
+import net.MiriaUwU.AnotherTechMod.block.custom.*;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -13,6 +10,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -60,6 +58,21 @@ public static final DeferredBlock<Block> Brass_block = registerblock("brass_bloc
     public static final DeferredBlock<Block> SOLAR_PANEL = registerblock("solar_panel",
             () -> new SolarPanelBlock(BlockBehaviour.Properties.of()
                     .strength(4F).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).mapColor(MapColor.STONE)));
+
+    public static final DeferredBlock<Block>  ENERGY_CABLE = BLOCKS.register("energy_cable",
+            () -> new EnergyCableBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()));
+
+
+    public  static final DeferredBlock<Block> BATTERY_BLOCK =
+            BLOCKS.register("battery_block", () -> new BatteryBlock(BlockBehaviour.Properties.of()
+                    .strength(3.0F, 3.0F)
+                    .sound(SoundType.METAL)
+                    .requiresCorrectToolForDrops()));
+
+
 
 
 

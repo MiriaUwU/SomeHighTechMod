@@ -23,6 +23,8 @@
  "block.yetanothertechmod.bronze_block": "Bronze Block",
  "block.yetanothertechmod.distiller": "Tier 1 Distiller",
  "block.yetanothertechmod.primitive_alloy_station_block": "Primitive alloy Station",
+  "block.yetanothertechmod.battery_block": "Battery Block",
+
 
 
  "creativetab.yetanothertechmod.ingots_items" : "Ingots",

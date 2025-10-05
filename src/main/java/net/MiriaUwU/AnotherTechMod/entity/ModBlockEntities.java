@@ -32,6 +32,16 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(SolarPanelBlockEntity::new,
                             ModBlocks.SOLAR_PANEL.get()).build(null));
 
+    public static final Supplier<BlockEntityType<EnergyCableBlockEntity>> ENERGY_CABLE =
+            BLOCK_ENTITIES.register("energy_cable", () ->
+                    BlockEntityType.Builder.of(EnergyCableBlockEntity::new,
+                            ModBlocks.ENERGY_CABLE.get()).build(null));
+
+
+    public static final Supplier<BlockEntityType<BatteryBlockEntity>> BATTERY_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("battery_block_entity", () ->
+                    BlockEntityType.Builder.of(BatteryBlockEntity::new, ModBlocks.BATTERY_BLOCK.get()).build(null));
+
 
 
 
